@@ -11,8 +11,12 @@ const routes = [
         }
     ] },
     {path:'/b', component:() => import('../components/b.vue') },
-    {path:'/c', component:() => import('../components/c.vue'),name:"c" },  
-    {path:'/', component:() => import('../components/TestElementUi.vue') },  
+    {path:'/c', component:() => import('../components/c.vue'),name:"c", beforeEnter:(to,from,next)=>{
+        alert("方法跳转之前")
+        next()
+    }
+    },  
+    {path:'/ele', component:() => import('../components/TestElementUi.vue') },  
     {
         path:'*', redirect:'/'
     }

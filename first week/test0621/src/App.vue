@@ -5,11 +5,19 @@
       <router-link to="/about">About</router-link>
     </nav> -->
     <router-link to="/a" tag="div" >跳转到a</router-link>
-    <router-link to="/b" target="_blank">跳转到b</router-link>
+    <router-link to="/b" >跳转到b</router-link>
+    <br>
     <router-link to="/c" >跳转到c</router-link>
-    <router-link :to="{name:'c'}">跳转到c</router-link>
-    <button @click="push">push</button>
-    <button @click="get">取参数</button>
+    <br>
+    <router-link :to="{
+      name:'c',
+      query:{
+        value:new Date(),
+      },
+      }">跳转到c</router-link>
+    <br>
+    <button @click="push"> push</button>
+    <button @click="get"> 取参数</button>
     <!-- replace属性不会返回上次点击的页面 -->
     <router-view></router-view>
   </div>
@@ -28,7 +36,7 @@ export default {
       this.$router.push({name:'/a', params:{value:2}});
     },
     get(){
-      console.log(this.$route.query)
+      console.log(this.$route)
     }
   },
   data(){
