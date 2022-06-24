@@ -21,7 +21,6 @@
     </el-form-item>
     <el-form-item prop="securitycode" label="验证码">
       <el-input style="width:180px" prefix-icon="el-icon-key" type="text" placeholder="请输入验证码" v-model="form.securitycode"/>
-
     </el-form-item>
     <!-- <el-input
     placeholder="请输入内容"
@@ -30,6 +29,7 @@
     </el-input> -->
 
     <el-form-item>
+      <!-- <router-link to="/index">确定</router-link> -->
       <el-button type="primary" v-on:click="onSubmit('loginForm')">登录</el-button>
     </el-form-item>
   </el-form>
@@ -45,6 +45,7 @@
       </span>
   </el-dialog>
 </div>
+
 </template>
 
 <script>
@@ -88,7 +89,8 @@
         this.$refs[formName].validate((valid) => {
           if (valid) {
             // 使用 vue-router 路由到指定页面，该方式称之为编程式导航
-            this.$router.push("/main/"+this.form.username);
+            // this.$router.push("/main/"+this.form.username);
+            this.$router.push("/index")
           } else {
             this.dialogVisible = true;
             return false;
