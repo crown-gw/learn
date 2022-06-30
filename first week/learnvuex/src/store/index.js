@@ -22,6 +22,13 @@ export default new Vuex.Store({
     subN(state,step){
       state.count -= step
     }
+  },
+  actions:{
+    addAsync(context){
+      setTimeout(() => {
+        context.commit('add')
+      }, 1000);
+    }
   }
 })
 

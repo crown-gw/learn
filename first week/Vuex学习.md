@@ -101,4 +101,7 @@ export default new Vuex.Store({
    }
    ```
    
+- 不能在mutation中进行异步操作
+  
+
 

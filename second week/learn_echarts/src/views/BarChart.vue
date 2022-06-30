@@ -7,8 +7,10 @@
 <script>
 // 引用Echarts
 import * as echarts from 'echarts'
+
 export default {
     name:'App',
+    
     mounted () {
         // 初始化
         let myEchart = echarts.init(this.$refs.mychart)
@@ -25,6 +27,11 @@ export default {
           yAxis:{
             data:xData,
             type:"category"  // 坐标轴类型，“category”类目轴，“value”数据轴
+          },
+          grid:{
+            show:true,
+            left:'20%',
+            top:'10%',
           },
           series:[{
             name:'销量',

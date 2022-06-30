@@ -1,8 +1,10 @@
 import Vue from 'vue'
 // import App from './App.vue'
 // import App from './views/BarChart.vue'
-// import App from './views/PieChart.vue'
-import App from './views/LineChart.vue'
+import App from './views/PieChart.vue'
+// import App from './views/LineChart.vue'
+// import App from './views/ScatterChart.vue'
+// import App from './views/MapChart.vue'
 import router from './router'
 import store from './store'
 

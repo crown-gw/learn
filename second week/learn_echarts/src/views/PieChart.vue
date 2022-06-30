@@ -7,18 +7,26 @@
 <script>
 // 引用Echarts
 import * as echarts from 'echarts'
+import axios from 'axios'
 export default {
     name:'App',
+    data(){
+        return{
+             echartdata:[]
+        }
+    },
+    methods: {
+      async linkData(){
+        let data = await axios({url:"http://localhost:8888/one"})
+        console.log(data)
+        this.echartdata = data.data
+      }
+    },
     mounted () {
         let myEcharts = echarts.init(this.$refs.mychart)
-        let data = [
-            {value:54,name:'一年级'},
-            {value:60,name:'二年级'},
-            {value:30,name:'三年级'},
-            {value:78,name:'四年级'},
-            {value:40,name:'五年级'},
-            {value:89,name:'六年级'},
-        ]
+        myEcharts.showLoading()
+        this.linkData().then(()=>{
+        myEcharts.hideLoading()
         let option = {
             title:{
                 text:'饼状图',
@@ -34,7 +42,7 @@ export default {
             series:{
                 name:"人数统计",
                 type:'pie',
-                data:data,
+                data:this.echartdata,
                 radius:["40%","70%"],
                 label:{
                     position:'inside'
@@ -43,6 +51,8 @@ export default {
             }
         }
         myEcharts.setOption(option)
+        })
+        
     }
     
 }
