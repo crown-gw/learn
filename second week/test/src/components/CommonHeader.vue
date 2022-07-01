@@ -1,7 +1,7 @@
 <template>
     <header>
         <div class="l-content">
-            <el-button type="primary" icon="el-icon-s-unfold" size="large"></el-button>
+            <el-button type="primary" icon="el-icon-s-unfold" size="large" @click="collapseMenu"></el-button>
         </div>
 
         <div class="r-content">
@@ -23,6 +23,11 @@ export default {
     data () {
         return {
             userImg:require('../assets/user.jpg')
+        }
+    },
+    methods: {
+        collapseMenu(){
+            this.$store.commit('collapseMenu')
         }
     }
 }

@@ -1,8 +1,9 @@
 <template>
     <el-menu
+    :collapse="isCollapse"
       default-active="2"
       class="el-menu-vertical-demo">
-      <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path">
+      <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
         <i :class=" 'el-icon-'+ item.icon"></i>
         <span slot="title">{{ item.label }}</span>
       </el-menu-item>
@@ -13,8 +14,7 @@
           <span>{{item.label}}</span>
         </template>
         <el-menu-item-group>
-          <el-menu-item :index="subitem.path" v-for="(subitem,subindex) in item.children" :key="subindex">{{subitem.label}}</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
+          <el-menu-item :index="subitem.path" v-for="(subitem,subindex) in item.children" :key="subindex" @click="clickMenu(subitem)">{{subitem.label}}</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       
@@ -29,8 +29,18 @@ export default {
         },
         hasChildren(){
             return this.asideMenu.filter(item => item.children)
+        },
+        isCollapse(){
+            return this.$store.state.tab.isCollapse
         }
     }, 
+     methods: {
+        clickMenu(item){
+            // console.log(item)
+            this.$router.push({name: item.name})
+            this.$store.commit('selectMenu', item)
+        }
+    },
     data () {
         return {
             asideMenu:[
@@ -73,11 +83,7 @@ export default {
             ]
         }
     },
-    methods: {
-        clickMenu(item){
-            this.$store.commit('selectMenu', item)
-        }
-    }
+   
 }
 </script>
 
@@ -85,4 +91,8 @@ export default {
     .el-menu{
         height: 100%;
     }
+     .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
 </style>

@@ -4,16 +4,18 @@
     size="small"
   :key="tag.name"
   v-for="tag in tags"
-  closable
+  :closable="tag.name !== 'home'"
   :disable-transitions="false"
-  @close="handleClose(tag)">
-  {{tag.name}}
+  @close="handleClose(tag)"
+  @click="changeMenu(tag)"
+  :effect="$route.name === tag.name ? 'dark' : 'plain'">
+  {{tag.label}}
 </el-tag>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 export default {
     computed: {
         ...mapState({
@@ -28,9 +30,16 @@ export default {
       };
     },
     methods: {
+      ...mapMutations({
+        close:'closeTab'
+      }),
       handleClose(tag) {
-        this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
+        this.close(tag)
       },
+      changeMenu(item){
+        this.$router.push({name:item.name})
+        this.$store.commit("selectMenu", item)
+      }
     }
 }
 </script>
@@ -40,6 +49,7 @@ export default {
         padding: 15px;
         .el-tag{
             margin-right: 10px;
+            cursor: pointer;
         }
     }
 </style>
