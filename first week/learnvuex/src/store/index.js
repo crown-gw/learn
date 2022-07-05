@@ -26,8 +26,30 @@ export default new Vuex.Store({
   actions:{
     addAsync(context){
       setTimeout(() => {
+        // 在 actions 中，不能直接修改state的数据
+        // 必须要通过context.commit 触发某个mutation才行
         context.commit('add')
       }, 1000);
+    },
+    addNAsync(context,step){
+      setTimeout(() => {
+        context.commit('addN',step)
+      }, 1000);
+    },
+    subAsync(context){
+      setTimeout(() => {
+        context.commit("sub")
+      }, 1000);
+    },
+    subNAsync(context,step){
+      setTimeout(() => {
+        context.commit('subN',step)
+      }, 1000);
+    }
+  },
+  getters: {
+    showNum(state){
+      return '当前最新数值为【'+ state.count +'】'
     }
   }
 })

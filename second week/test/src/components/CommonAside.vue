@@ -48,7 +48,7 @@ export default {
                     path:'/',
                     name:'home',
                     label:'首页',
-                    icon:'s-home'
+                    icon:'s-home',
                 },
                 {
                     path:'/user',
