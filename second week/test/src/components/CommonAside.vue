@@ -3,6 +3,9 @@
     :collapse="isCollapse"
       default-active="2"
       class="el-menu-vertical-demo">
+      <div class="title">
+      多场景智慧园区
+      </div>
       <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
         <i :class=" 'el-icon-'+ item.icon"></i>
         <span slot="title">{{ item.label }}</span>
@@ -94,5 +97,13 @@ export default {
      .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
     min-height: 400px;
+  }
+  .title{
+    height: 60px;
+    background-color: #409eff;
+    /* position: absolute; */
+    text-align: center;
+    line-height: 60px;
+    color:#fff;
   }
 </style>

@@ -4,7 +4,9 @@
     <!-- <div class="title">
       多场景智慧园区
     </div> -->
-    <common-aside></common-aside>
+    
+      <common-aside></common-aside>
+    
     </el-aside>
   <el-container>
     <el-header class="header"><common-header></common-header></el-header>
@@ -33,11 +35,7 @@ export default {
 
 
 <style scoped>
-  .title{
-    height: 60px;
-    background-color: #409eff;
-    position: absolute;
-  }
+  
     .header{
     background-color: #409eff;
   }
